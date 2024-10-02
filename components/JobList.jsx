@@ -129,7 +129,7 @@ const JobList = () => {
         showsHorizontalScrollIndicator={false}
         style={{ paddingLeft: 10 }}
       />
-      <Modal
+      {/* <Modal
         transparent={true}
         animationType="fade"
         visible={notificationVisible}
@@ -144,7 +144,7 @@ const JobList = () => {
             </TouchableOpacity>
           </View>
         </View>
-      </Modal>
+      </Modal> */}
     </View>
   );
 };

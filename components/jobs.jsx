@@ -1,5 +1,14 @@
 import { images } from "../constants";
 
+const services = [
+  { label: 'Planting/Seeding', price: 5000 },
+  { label: 'Harrowing', price: 5000 },
+  { label: 'Tilling', price: 5000 },
+  { label: 'Ploughing', price: 8750 },
+  { label: 'Ridging', price: 6000 },
+  // Add other services here...
+];
+
 export const jobs = [
     {
       id: 1,
@@ -15,7 +24,9 @@ export const jobs = [
       duration: 4, // in hours
       instructions: 'Be sure to check the soil moisture before starting.',
       image: images.farm1,
-      farmSize: '120 Ha'
+      farmSize: '120 Ha',
+      service: 'Harrowing',
+      pricePerHectare: services.find(s => s.label === 'Harrowing').price
     },
     {
       id: 2,
@@ -31,7 +42,9 @@ export const jobs = [
       duration: 3,
       instructions: 'Check for any obstacles in the field before starting.',
       image: images.farm2,
-      farmSize: '220 Ha'
+      farmSize: '220 Ha',
+      service: 'Planting/Seeding',
+      pricePerHectare: services.find(s => s.label === 'Planting/Seeding').price
     },
     {
       id: 3,
@@ -47,7 +60,9 @@ export const jobs = [
       duration: 2,
       instructions: 'Apply fertilizer evenly across the entire field.',
       image: images.farm5,
-      farmSize: '160 Ha'
+      farmSize: '160 Ha',
+      service: 'Tilling',
+      pricePerHectare: services.find(s => s.label === 'Tilling').price
     },
     {
       id: 4,
@@ -63,7 +78,9 @@ export const jobs = [
       duration: 5,
       instructions: 'Ensure all equipment is ready and in good condition.',
       image: images.farm6,
-      farmSize: '420 Ha'
+      farmSize: '420 Ha',
+      service: 'Ploughing',
+      pricePerHectare: services.find(s => s.label === 'Ploughing').price
     },
     {
       id: 5,
@@ -79,7 +96,9 @@ export const jobs = [
       duration: 6,
       instructions: 'Plant crops in rows spaced 2 meters apart.',
       image: images.farm7,
-      farmSize: '4530 Ha'
+      farmSize: '4530 Ha',
+      service: 'Ridging',
+      pricePerHectare: services.find(s => s.label === 'Ridging').price
     },
     {
       id: 6,
@@ -95,7 +114,9 @@ export const jobs = [
       duration: 4,
       instructions: 'Use a low-concentration pesticide and avoid windy conditions.',
       image: images.farm8,
-      farmSize: '1200 Ha'
+      farmSize: '1200 Ha',
+      service: 'Ploughing',
+      pricePerHectare: services.find(s => s.label === 'Ploughing').price
     },
     {
       id: 7,
@@ -111,6 +132,8 @@ export const jobs = [
       duration: 5,
       instructions: 'Make sure water evenly covers the entire field.',
       image: images.farm6,
-      farmSize: '7820 Ha'
+      farmSize: '7820 Ha',
+      service: 'Ridging',
+      pricePerHectare: services.find(s => s.label === 'Ridging').price
     }
 ];

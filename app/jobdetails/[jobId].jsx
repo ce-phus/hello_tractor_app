@@ -1,17 +1,22 @@
-import { View, Text, Alert, Button, StyleSheet } from 'react-native';
-import React from 'react';
+// JobsDetails.js
+import { View, Text, Alert, Button } from 'react-native';
+import React, { useState } from 'react';
 import MapView, { Polygon, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useLocalSearchParams } from 'expo-router';
 import { jobs } from '../../components/jobs';
+import BookingModal from '../../components/BookingModal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const JobsDetails = () => {
   const { jobId } = useLocalSearchParams();
   const job = jobs.find((job) => job.id === parseInt(jobId));
 
+  const [modalVisible, setModalVisible] = useState(false);
+
   if (!job) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>Job not found</Text>
+      <View className="flex-1 p-4 pt-10 bg-gray-100">
+        <Text className="text-2xl font-bold">Job not found</Text>
       </View>
     );
   }
@@ -25,47 +30,78 @@ const JobsDetails = () => {
     Alert.alert('Job Ended', 'You have ended the job');
   };
 
-  const handleRescheduleJob = () => {
-    Alert.alert('Job Rescheduled', 'You can choose a new time');
+  const handleBookJob = () => {
+    setModalVisible(true); // Show booking modal
   };
 
   const handleCancelJob = () => {
     Alert.alert('Job Cancelled', 'The job has been cancelled.');
   };
 
+  const handleBookingSubmit = async () => {
+    try {
+      const existingBookings = await AsyncStorage.getItem('bookings');
+      let bookedJobs = existingBookings ? JSON.parse(existingBookings) : [];
+  
+      const isAlreadyBooked = bookedJobs.some((b) => b.id === job.id);
+      if (isAlreadyBooked) {
+        Alert.alert('Already Booked', 'You have already booked this job.');
+        return;
+      }
+  
+      bookedJobs.push({
+        id: job.id,
+        name: job.title,
+        service: job.service,
+        servicePrice: job.pricePerHectare,
+        startTime: job.startTime,
+        duration: job.duration,
+        instructions: job.instructions,
+        farmPolygon: job.farmPolygon,
+      });
+  
+      await AsyncStorage.setItem('bookings', JSON.stringify(bookedJobs));
+      Alert.alert('Job Booked', 'The job has been successfully booked.');
+    } catch (error) {
+      Alert.alert('Error', 'There was an error booking the job.');
+    }
+  };
+  
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title} className='text-2xl font-pbold mt-2 mb-3'>{job.title}</Text>
-      <Text className='text-xl font-pmedium mb-3'>Farm Size: {job.farmSize}</Text>
-      <Text className='text-xl font-pmedium mb-3'>Start Time: {new Date(job.startTime).toLocaleString()}</Text>
-      <Text className='text-xl font-pmedium mb-3'>Duration: {job.duration} hours</Text>
-      <Text className='text-xl font-pmedium mb-3'>Instructions: {job.instructions}</Text>
+    <View className="flex-1 p-4 pt-10 bg-gray-100">
+      <Text className="text-2xl font-bold mt-2 mb-3">{job.title}</Text>
+      <Text className="text-xl font-medium mb-3">Farm Size: {job.farmSize}</Text>
+      <Text className="text-xl font-medium mb-3">Start Time: {new Date(job.startTime).toLocaleString()}</Text>
+      <Text className="text-xl font-medium mb-3">Price/ha: KES {job.pricePerHectare} </Text>
+      <Text className="text-xl font-medium mb-3">Service type: {job.service} </Text>
+      <Text className="text-xl font-medium mb-3">Instructions: {job.instructions}</Text>
 
       {/* Job Actions */}
-      <View style={styles.buttonContainer}>
-        <View style={styles.buttonWrapper}>
+      <View className="flex flex-row flex-wrap mb-4">
+        <View className="w-1/2 p-1">
           <Button title="Start Job" onPress={handleStartJob} color="#4CAF50" />
         </View>
-        <View style={styles.buttonWrapper}>
+        <View className="w-1/2 p-1">
           <Button title="End Job" onPress={handleEndJob} color="#F44336" />
         </View>
-        <View style={styles.buttonWrapper}>
-          <Button title="Reschedule Job" onPress={handleRescheduleJob} color="#2196F3" />
+        <View className="w-1/2 p-1">
+          <Button title="Book Job" onPress={handleBookJob} color="#2196F3" />
         </View>
-        <View style={styles.buttonWrapper}>
+        <View className="w-1/2 p-1">
           <Button title="Cancel Job" onPress={handleCancelJob} color="#FF9800" />
         </View>
       </View>
 
       <MapView
-        style={styles.map}
+        style={{ width: '100%', height: 300 }}
         initialRegion={{
-          latitude: job.farmPolygon[0]?.latitude || 0, 
+          latitude: job.farmPolygon[0]?.latitude || 0,
           longitude: job.farmPolygon[0]?.longitude || 0,
-          latitudeDelta: 0.005,  
+          latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
-        userInterfaceStyle='dark'
+        userInterfaceStyle="dark"
         provider={PROVIDER_GOOGLE}
         showsBuildings
         showsUserLocation
@@ -73,40 +109,21 @@ const JobsDetails = () => {
       >
         <Polygon
           coordinates={job.farmPolygon}
-          strokeColor="#000" 
-          fillColor="rgba(0, 200, 0, 0.5)" 
+          strokeColor="#000"
+          fillColor="rgba(0, 200, 0, 0.5)"
           strokeWidth={2}
         />
       </MapView>
+
+      {/* Booking Modal */}
+      <BookingModal
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onSubmit={handleBookingSubmit}
+        job={job}
+      />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-    paddingTop: 40,
-    backgroundColor: '#f0f0f0',
-  },
-  
-  info: {
-    fontSize: 18,
-    marginVertical: 4,
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginBottom: 16,
-  },
-  buttonWrapper: {
-    width: '48%', // Adjust width to fit two buttons in a row
-    margin: '1%', // Add margin for spacing
-  },
-  map: {
-    width: '100%',
-    height: 300,
-  },
-});
 
 export default JobsDetails;
