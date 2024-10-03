@@ -14,6 +14,11 @@ import play from "../assets/icons/play.png";
 import farm from "../assets/icons/farm.png"
 import podcast from "../assets/icons/podcasts.png"
 import arrowRight from "../assets/icons/arrow-right.png"
+import jobs from "../assets/icons/tractor.png"
+import track from "../assets/icons/track.png"
+import request from "../assets/icons/request.png"
+import globe from "../assets/icons/planet-earth.png"
+import briefcase from "../assets/icons/briefcase.png"
 
 export default {
   play,
@@ -31,5 +36,10 @@ export default {
   eye,
   farm,
   podcast,
-  arrowRight
+  arrowRight,
+  jobs,
+  track,
+  request,
+  globe,
+  briefcase
 };

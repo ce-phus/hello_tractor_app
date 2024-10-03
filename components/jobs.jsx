@@ -6,7 +6,6 @@ const services = [
   { label: 'Tilling', price: 5000 },
   { label: 'Ploughing', price: 8750 },
   { label: 'Ridging', price: 6000 },
-  // Add other services here...
 ];
 
 export const jobs = [

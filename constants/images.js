@@ -13,6 +13,15 @@ import farm7 from "../assets/images/farm7.png"
 import farm8 from "../assets/images/farm8.png"
 import tractor1 from "../assets/images/tractor1.png"
 import tractor2 from "../assets/images/tractor2.png"
+import tractor3 from "../assets/images/farm3.png"
+import tractor4 from "../assets/images/farm4.png"
+import award from "../assets/images/award.png"
+import location from "../assets/images/location.png"
+import planning from "../assets/images/planning.png"
+import review from "../assets/images/review1.png"
+import award1 from "../assets/images/award1.png"
+import profile from "../assets/images/profile.png"
+
 
 export default {
     image,
@@ -28,6 +37,14 @@ export default {
     farm6, 
     tractor1,
     tractor2,
+    tractor3,
+    tractor4,
     farm7,
-    farm8
+    farm8, 
+    review,
+    planning,
+    location,
+    award,
+    award1,
+    profile
 }
