@@ -3,6 +3,7 @@ import { Drawer } from 'expo-router/drawer';
 import { DrawerToggleButton } from '@react-navigation/drawer';
 import { icons } from '../../../../constants';
 import { Genres, PodcastView } from '../../../../components';
+import { TextInput } from 'react-native-gesture-handler';
 
 const podcasts = () => {
   return (
@@ -23,6 +24,11 @@ const podcasts = () => {
                 source={icons.search}
                 className='h-5 w-5 rounded-full'
               />
+              <TextInput
+          className="flex-1 text-black font-psemibold text-base"
+          placeholder='Search Podcast...'
+          placeholderTextColor="#7B7B8B"
+        />
             </View>
           </View>
         </View>
