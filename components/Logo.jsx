@@ -21,23 +21,23 @@ const AnimatedAdvert = ({ title }) => {
   return (
     <Animated.View style={{ transform: [{ translateX }] }}
     className='full'>
-      <Text className='text-gray-500 text-lg font-semibold'>{title}</Text>
+      <Text className='text-gray-200 text-lg font-semibold'>{title}</Text>
     </Animated.View>
   );
 };
 
 const Logo = () => {
   return (
-    <View className="mx-1 mb-4">
-        <View className='mb-4'>
+    <View className="mx-1 mb-4 relative">
+        <View className='pb-20'>
         <Image
         source={images.logo}
-        className="w-[130px] h-[50px]"
+        className="w-[130px] h-[50px] absolute right-0"
         resizeMode="contain"
       />
         </View>
       
-      <View className="flex-row flex-wrap px-1.5 py-2 bg-secondary-100 rounded-lg">
+      <View className="flex-row flex-wrap px-1.5 py-2  bg-secondary-100 rounded-lg">
         <AnimatedAdvert
           title="More Jobs, More Progress – The Road to Tractor Ownership Begins Today!"
         />

@@ -46,8 +46,8 @@ const podcasts = () => {
         headerLeft: () => <DrawerToggleButton/>
       }}
       />
-      <View className="flex-1 p-4 pt-10">
-      <Text className="text-2xl font-bold mb-4">Farming Podcasts</Text>
+      <View className="flex-1 p-4 pt-20">
+      <Text className="text-2xl font-pbold mb-4">Farming Podcasts</Text>
       <FlatList
         data={podcasts}
         keyExtractor={(item) => item.id}

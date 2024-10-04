@@ -42,7 +42,7 @@ const fetchAccessToken = async () => {
           }
         }
       );
-      return response.data.shows.items; // Return list of podcasts
+      return response.data.shows.items; 
     } catch (error) {
       console.error('Error fetching podcasts:', error);
       throw error;

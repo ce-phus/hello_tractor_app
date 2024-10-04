@@ -47,7 +47,7 @@ const Home = () => {
           <Works />
 
           <View className="mt-6">
-            <Text className='text-xl font-pbold'>🌟App Features</Text>
+            <Text className='text-xl font-pbold mb-3'>🌟App Features</Text>
             <Features />
           </View>
 

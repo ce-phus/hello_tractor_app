@@ -22,13 +22,15 @@ const CustomDrawerContent = (props) => {
         </View>
         <View style={{backgroundColor:'#fff', paddingTop:10 }} className='mt-'>
         <DrawerItemList {...props} />
-        <DrawerItem label={'Logout'} onPress={() => router.replace('/')} />
+        <DrawerItem label={'Logout'} onPress={() => router.replace('/')} 
+          {...props}
+          />
         </View>
         
       </DrawerContentScrollView>
 
       <View style={{ borderTopWidth: 1, borderTopColor: '#dde3fe', padding: 20 + bottom }}>
-        <Text>Settings</Text>
+        <Text className='text-lg font-psemibold'>Settings</Text>
       </View>
     </View>
   );
