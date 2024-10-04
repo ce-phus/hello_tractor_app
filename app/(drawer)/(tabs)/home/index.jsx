@@ -97,13 +97,13 @@ const Home = () => {
       >
         <View className="flex-1 justify-center items-center bg-black/50">
           <View className="bg-white p-6 rounded-lg w-80 shadow-lg">
-            <Text className="text-2xl font-bold text-center">🔔 New Job Available!</Text>
-            <Text className="text-center mt-4 mb-6 text-gray-600">A new job has been posted. Check the Jobs section for more details.</Text>
+            <Text className="text-2xl font-pbold text-center">🔔 New Job Available!</Text>
+            <Text className="text-center mt-4 mb-6 text-gray-600 font-psemibold">A new job has been posted. Check the Jobs section for more details.</Text>
             <TouchableOpacity
               className="bg-blue-500 py-2 rounded-full"
               onPress={closeModal}
             >
-              <Text className="text-white text-center font-semibold">Close</Text>
+              <Text className="text-white text-center font-psemibold">Close</Text>
             </TouchableOpacity>
           </View>
         </View>
