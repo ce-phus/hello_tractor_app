@@ -4,6 +4,8 @@ import Carousel from "./Carousel";
 import Works from "./Works"
 import Features from "./Features";
 import FormField from "./FormField"
+import PodcastView from "./PodcastView";
+import Genres from "./Genres";
 
 export {
     Logo, 
@@ -11,5 +13,7 @@ export {
     Carousel,
     Works,
     Features,
-    FormField
+    FormField,
+    PodcastView,
+    Genres
 }

@@ -9,6 +9,7 @@ import { FormField } from '../../../../components';
 import { Drawer } from 'expo-router/drawer';
 import { DrawerToggleButton } from '@react-navigation/drawer';
 import { ScrollView } from 'react-native-gesture-handler';
+import {useRouter} from "expo-router"
 
 
 const services = [
@@ -20,6 +21,7 @@ const services = [
 ];
 
 const Create = () => {
+  const router = useRouter()
   const [farmName, setFarmName] = useState('');
   const [farmPolygon, setFarmPolygon] = useState([]);
   const [service, setService] = useState('');
@@ -130,7 +132,8 @@ const Create = () => {
         await AsyncStorage.setItem('farms', JSON.stringify(farmsArray));
         setBookings(farmsArray); // Update bookings list
 
-        Alert.alert('Farm Saved', 'Farm saved successfully');
+        Alert.alert('Farm Saved', 'Booking successfully saved after app reload');
+        router.push('/bookings')
       } catch (error) {
         Alert.alert("Error", "Failed to save the farm");
       } 

@@ -99,14 +99,14 @@ const TrackerOwnerDashboard = () => {
       </View>
 
       {/* Completed Jobs List */}
-      <Text className="text-xl font-bold mb-3">Completed Jobs</Text>
+      <Text className="text-xl font-pbold mb-3 mx-3">Completed Jobs</Text>
       {completedJobs.length > 0 ? (
         completedJobs.map((job) => (
           <View
             key={job.id}
-            className="mb-4 p-4 bg-white shadow-lg rounded-lg border border-gray-200 pb-20"
+            className="mb-4 p-4 bg-white shadow-lg rounded-lg border border-gray-200 pb-20 mx-3"
           >
-            <Text className="text-lg font-bold text-gray-900">{job.title}</Text>
+            <Text className="text-lg font-pbold text-gray-900">{job.title}</Text>
             <Text className="text-sm text-gray-600 font-psemibold mb-2">Service: {job.service}</Text>
             <Text className="text-sm text-gray-600 font-psemibold mb-2">Price per Hectare: KES {job.price}</Text>
             <Text className="text-sm text-gray-600 font-psemibold mb-2">Duration: {job.duration} hours</Text>
@@ -117,7 +117,7 @@ const TrackerOwnerDashboard = () => {
           </View>
         ))
       ) : (
-        <Text className="text-sm text-gray-500">No completed jobs yet.</Text>
+        <Text className="text-sm text-gray-600 font-psemibold mx-3">😪 No completed jobs yet.</Text>
       )}
     </ScrollView>
   );

@@ -1,74 +1,49 @@
-import { View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import {fetchFarmingPodcasts} from "../../../../api/spotifyService"
+import { View, Text, Image, FlatList, TouchableOpacity, ActivityIndicator, ScrollView } from 'react-native';
 import { Drawer } from 'expo-router/drawer';
 import { DrawerToggleButton } from '@react-navigation/drawer';
+import { icons } from '../../../../constants';
+import { Genres, PodcastView } from '../../../../components';
 
 const podcasts = () => {
-  const [podcasts, setPodcasts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null)
-
-  useEffect(() => {
-    const loadPodcasts = async () => {
-      try {
-        const podcastData = await fetchFarmingPodcasts(); // Fetch podcasts from Spotify
-  
-        
-        const validPodcasts = podcastData.filter((podcast) => podcast !== null && podcast !== undefined);
-  
-        setPodcasts(validPodcasts); 
-      } catch (err) {
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
-  
-    loadPodcasts();
-  }, []);
-  
-
-  if (loading) {
-    return <ActivityIndicator size="large" color="#00ff00" />;
-  }
-
-  if (error) {
-    return <Text>Error loading podcasts: {error.message}</Text>;
-  }
-
   return (
     <>
       <Drawer.Screen
-      options={{
-        headerShown: true,
-        title: "Podcasts",
-        headerLeft: () => <DrawerToggleButton/>
-      }}
+        options={{
+          headerShown: true,
+          title: "Podcasts",
+          headerLeft: () => <DrawerToggleButton />
+        }}
       />
-      <View className="flex-1 p-4 pt-20">
-      <Text className="text-2xl font-pbold mb-4">Farming Podcasts</Text>
-      <FlatList
-        data={podcasts}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() => {/* Optionally handle podcast playback or open in Spotify */}}
-            className="mb-4"
-          >
-            <Image
-              source={{ uri: item.images[0].url }}
-              style={{ width: 100, height: 100 }}
-            />
-            <Text className="text-lg font-bold">{item.name}</Text>
-            <Text className="text-gray-500">{item.description}</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View className="bg-secondary-200 h-[200px] rounded-b-lg">
+          <Text className='text-3xl font-pbold pt-20 mt-10 mx-3 text-white'>Discover</Text>
+          <View className='flex items-center justify-center'>
+            <View className="w-3/4 h-10 px-2 bg-gray-300 rounded-2xl border-2 border-gray-200 focus:border-secondary flex flex-row items-center">
+              <Image 
+                source={icons.search}
+                className='h-5 w-5 rounded-full'
+              />
+            </View>
+          </View>
+        </View>
+        
+        <View className='flex-row justify-between mt-3'>
+          <Text className='text-xl font-psemibold mb-3 mx-3'>Genres</Text>
+          <TouchableOpacity className='bg-secondary px-1.5 py-2 mr-3 rounded-lg'>
+            <Text className='text-white font-psemibold text-lg'>View All</Text>
           </TouchableOpacity>
-        )}
-      />
-    </View>
+        </View>
+        <Genres />
+        <View className='flex-row justify-between'>
+          <Text className='text-xl font-psemibold mb-3 mx-3'>Recently Played</Text>
+          <TouchableOpacity className='bg-secondary px-1.5 py-2 mr-3 rounded-lg'>
+            <Text className='text-white font-psemibold text-lg'>View All</Text>
+          </TouchableOpacity>
+        </View>
+        <PodcastView />
+      </ScrollView>
     </>
-    
-  )
+  );
 }
 
-export default podcasts
+export default podcasts;

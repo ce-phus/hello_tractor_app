@@ -8,7 +8,7 @@ console.log("client secret: ", clientSecret)
 // Function to get an access token from Spotify
 const fetchAccessToken = async () => {
     const credentials = `${clientId}:${clientSecret}`;
-    const encodedCredentials = btoa(credentials); // base64 encode client_id:client_secret
+    const encodedCredentials = btoa(credentials); 
   
     try {
       const response = await axios.post('https://accounts.spotify.com/api/token', 

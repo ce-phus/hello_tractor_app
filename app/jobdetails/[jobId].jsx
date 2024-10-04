@@ -24,7 +24,7 @@ const JobsDetails = () => {
   }
 
   const handleStartJob = () => {
-    Alert.alert('Job Started', 'You have started the job');
+    Alert.alert('Job Start not implemented yet!!😪');
   };
 
   const handleEndJob = async () => {
@@ -61,7 +61,7 @@ const JobsDetails = () => {
   };
 
   const handleCancelJob = () => {
-    Alert.alert('Job Cancelled', 'The job has been cancelled.');
+    Alert.alert('Job Cancel not implemented yet!!😪');
   };
 
   const handleBookingSubmit = async () => {
@@ -87,7 +87,8 @@ const JobsDetails = () => {
       });
   
       await AsyncStorage.setItem('bookings', JSON.stringify(bookedJobs));
-      Alert.alert('Job Booked', 'The job has been successfully booked.');
+      Alert.alert('Bookings Saved', 'Booking successfully saved after app reload');
+      router.push('/bookings')
     } catch (error) {
       Alert.alert('Error', 'There was an error booking the job.');
     }

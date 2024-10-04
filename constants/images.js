@@ -21,6 +21,9 @@ import planning from "../assets/images/planning.png"
 import review from "../assets/images/review1.png"
 import award1 from "../assets/images/award1.png"
 import profile from "../assets/images/profile.png"
+import podcast1 from "../assets/images/podcast1.png"
+import podcast2 from "../assets/images/podcast2.png"
+import podcast3 from "../assets/images/podcast3.jpg"
 
 
 export default {
@@ -46,5 +49,8 @@ export default {
     location,
     award,
     award1,
-    profile
+    profile,
+    podcast1,
+    podcast2,
+    podcast3
 }
