@@ -31,15 +31,6 @@ const DrawerLayout = () => {
             headerShown:false
         }}/>
         <Drawer.Screen
-        name='ongoingjobs'
-        options={{
-            drawerLabel: 'On Going Jobs',
-            headerTitle: '',
-            drawerIcon: ({ size, color }) => (
-                <MaterialIcons name="work" size={size} color={color} />
-            )
-        }}/>
-        <Drawer.Screen
         name='profile'
         options={{
             drawerLabel: 'Profile',
